@@ -14,7 +14,7 @@ class MemoryParser(LogsterParser):
     ]
 
     def __init__(self, option_string=None):
-        self.web_dyno_regex = re.compile('source=web\.')
+        self.web_dyno_regex = re.compile('.*source=web\.')
         self.memory_measure_regexes = dict(
             (
                 memory_measure,
