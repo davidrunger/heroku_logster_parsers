@@ -11,6 +11,8 @@ class MemoryParser(LogsterParser):
         'memory_cache',
         'memory_swap',
         'memory_quota',
+        'memory_pgpgin',
+        'memory_pgpgout',
     ]
 
     def __init__(self, option_string=None):
@@ -18,7 +20,7 @@ class MemoryParser(LogsterParser):
         self.memory_measure_regexes = dict(
             (
                 memory_measure,
-                re.compile('.*\\bsample#%(memory_measure)s=(?P<%(memory_measure)s>[\\d.]+)MB\\b' % {'memory_measure': memory_measure}),
+                re.compile('.*\\bsample#%(memory_measure)s=(?P<%(memory_measure)s>[\\d.]+)(MB|pages)\\b' % {'memory_measure': memory_measure}),
             ) for memory_measure in MemoryParser.MEMORY_MEASURES
         )
 
